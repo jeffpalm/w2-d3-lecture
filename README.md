@@ -83,7 +83,7 @@ The value of `this` is decided upon how our code is being executed.
 The default value of `this` refers to the global object. In a browser environment, `this` would be the `window` object.
 
 ```javascript
-const myCar = 'Tesla'
+const myCar = "Tesla"
 
 function displayMyCar() {
   // reference the global object with `this`
@@ -101,10 +101,10 @@ Implicit Context is where the value of `this` is the parent object of where the 
 
 ```javascript
 const newCar = {
-  make: 'Tesla',
-  model: 'Model X',
+  make: "Tesla",
+  model: "Model X",
   year: 2019,
-  showOff: function() {
+  showOff: function () {
     alert(`I drive a ${this.make}`)
   },
 }
@@ -221,8 +221,8 @@ Inside of the constructor function, we use the `this` keyword to refer to the ob
 ```js
 function Car() {
   // this ==> {} IMPLIED
-  this.make = 'Tesla'
-  this.model = 'Model X'
+  this.make = "Tesla"
+  this.model = "Model X"
   // return this IMPLIED
 }
 ```
@@ -249,7 +249,7 @@ function Car(make, model) {
 we can now call upon that constructor function to create a new instance and pass in data to that instance.
 
 ```js
-const myCar = Car('Tesla', 'Model X')
+const myCar = Car("Tesla", "Model X")
 ```
 
 Now let's add some methods to our contructor function.
@@ -260,8 +260,8 @@ function Car(make, model) {
   this.model = model
 
   // method to honk
-  this.honk = function() {
-    alert('Beep Beep')
+  this.honk = function () {
+    alert("Beep Beep")
   }
 }
 ```
@@ -269,9 +269,9 @@ function Car(make, model) {
 Now let's create some instances from our new constructor that has a method on it.
 
 ```js
-var subaru = new Car('Subaru', 'WRX')
-var civic = new Car('Honda', 'Civic')
-var tesla = new Car('Tesla', 'Model S')
+var subaru = new Car("Subaru", "WRX")
+var civic = new Car("Honda", "Civic")
+var tesla = new Car("Tesla", "Model S")
 ```
 
 We can now call the `honk` method on all of the car instances that we have created.
@@ -291,14 +291,14 @@ Instead of putting the `honk` method on every instance that gets created, we can
 We will directly target the `prototype` property that exists on the `Car` function (object) and add the method onto it.
 
 ```js
-Car.prototype.honk = function() {
+Car.prototype.honk = function () {
   alert(`Beep Beep, I am a ${this.make}!`)
 }
 
 // Now we can create our instances
-var subaru = new Car('Subaru', 'WRX')
-var civic = new Car('Honda', 'Civic')
-var tesla = new Car('Tesla', 'Model S')
+var subaru = new Car("Subaru", "WRX")
+var civic = new Car("Honda", "Civic")
+var tesla = new Car("Tesla", "Model S")
 
 // We can still use the prototype method on every instance
 subaru.honk()
@@ -329,11 +329,11 @@ function Car(make, model) {
   this.model = model
 }
 
-Car.prototype.honk = function() {
+Car.prototype.honk = function () {
   console.log(`The ${this.make} goes Beep Beep!`)
 }
 
-const myCar = new Car('Tesla', 'Model X')
+const myCar = new Car("Tesla", "Model X")
 
 // We can get the prototype object from an instance using the Object.getPrototypeOf method
 console.log(Object.getPrototypeOf(myCar)) // Car {honk: [function]}
@@ -355,7 +355,7 @@ function SuperCar(make, model) {
   // pass the current object in with the arguments we recieved to gain the Car functionality
   Car.call(this, make, model)
   // then set the engine property to v12
-  this.engine = 'v12'
+  this.engine = "v12"
 }
 
 // Step Two:
@@ -372,17 +372,17 @@ Now let's use our SuperCar constructor that is inehriting the prototype properti
 
 ```js
 // Create a new instance of the supercar
-const mySuperCar = new SuperCar('Tesla', 'Model Super')
+const mySuperCar = new SuperCar("Tesla", "Model Super")
 // We can now use the prototype methods that we have inherited from Car
 mySuperCar.honk()
 // We can add more protype methods to the supercar
-SuperCar.prototype.rev = function() {
+SuperCar.prototype.rev = function () {
   console.log(`You have revved the ${this.engine} engine`)
 }
 // Then we can use the prototype method
 mySuperCar.rev()
 // Now if we create a prototype method on Car, our SuperCar will also ineherit it
-Car.prototype.oilChange = function() {
+Car.prototype.oilChange = function () {
   console.log(`You have changed the oil for your ${this.make} ${this.model}`)
 }
 // We can now use that method
